@@ -1,25 +1,54 @@
+//******** */ Sync state in multiple route, calculate total price in review page......38.5*******
+
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import Header from './Components/Header/Header';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
+import Shop from './Components/Shop/Shop';
+import Review from './Components/Review/Review';
+import Inventory from './Components/Inventory/Inventory';
+import ProductDetails from './Components/ProductDetails/ProductDetails';
+import Product from './Components/Product/Product';
+
+
+
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+  <div>
+   <Header/>
+
+
+    <Router>
+      <Switch>
+        <Route path="/home">
+          <Shop/>
+        </Route>
+        <Route path="/review">
+          <Review/>
+        </Route>
+        <Route path="/inventory">
+          <Inventory/>
+        </Route>
+        <Route path="/product/:proCode">
+          <ProductDetails/>
+        </Route>
+        <Route exact path="/">
+          <Shop/>
+        </Route>
+        
+        <Route path="*">
+          <h1 style={{color:"red",textAlign:"center",marginTop:"10%"}}>404 NOT FOUND</h1>
+        </Route>
+      </Switch>
+    </Router>
+
+  </div>
   );
 }
 
